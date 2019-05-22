@@ -1,11 +1,7 @@
 <template>
   <div id="app">
-    <template v-if="show">
-      <HomeCommon/>
-    </template>
-    <template v-else>
+      <HomeCommon v-if="$route.meta.showcommon"/>
       <router-view/>
-    </template>
   </div>
 </template>
 
@@ -13,24 +9,8 @@
 import HomeCommon from './components/HomeCommon/HomeCommon.vue'
 
 export default {
-  data() {
-    return {
-      show: true
-    }
-  },
   components: {
     HomeCommon
-  },
-  computed: {
-    showlogin() {
-      console.log(this.$router.history);
-      if (this.$router.history.current.fullPath == "/login") {
-        return this.show = false;
-      }else{
-        console.log(this.show);
-        return this.show = true;
-      }
-    }
   }
 };
 </script>

@@ -36,17 +36,31 @@ export default {
     onlogin(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.$http.post(this.$api.signin, this.userInfo).then(resp => {
-            if(resp.data.message === "登录成功"){
-              console.log(resp);
-            }else{
-              this.$message.error('用户名或密码错误');
-              this.userInfo.password = '';
-            }
-          }).catch((err)=>{
-            this.$message.error('用户名或密码错误');
-            this.userInfo.password = '';
-          });
+          this.$http
+            .post(this.$api.signin, this.userInfo)
+            .then(resp => {
+              if (resp.data.success) {
+                var permissionData = JSON.stringify(resp.data.response.permissions);
+                localStorage.setItem("getPermissionData",permissionData);
+                //保存token值
+                var query = this.$route.query.redirect;
+                localStorage.setItem("token", resp.data.token);
+                if (!query) {
+                  this.$router.push({ path: "/" });
+                } else {
+                  this.$router.push({ path: query });
+                }
+              } else {
+                
+                this.$message.error("用户名或密码错误");
+                this.userInfo.password = "";
+              }
+            })
+            .catch(err => {
+              console.log(err,this.$route);
+              this.$message.error("用户名或密码错误");
+              this.userInfo.password = "";
+            });
         } else {
           console.log("error submit!!");
           return false;

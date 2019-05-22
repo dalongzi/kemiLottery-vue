@@ -6,7 +6,8 @@ axios.defaults.baseURL = process.env.VUE_APP_BaseURL;
 
 // 请求拦截器
 axios.interceptors.request.use(function (config) {
-  // Do something before request is sent
+  var token = localStorage.getItem("token");
+  config.headers.common['Authorization'] = "Bearer " + token;
   return config;
 }, function (error) {
   // Do something with request error
@@ -15,7 +16,7 @@ axios.interceptors.request.use(function (config) {
 
 // 响应拦截器
 axios.interceptors.response.use(function (response) {
-  // Do something with response data
+  
   return response;
 }, function (error) {
   // Do something with response error

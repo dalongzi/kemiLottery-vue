@@ -1,0 +1,9 @@
+@mixin main {
+  margin-left: 250px;
+  margin-top: 50px;
+}
+@mixin tablecss {
+  min-width: 800px;
+  width: 80%;
+  margin: 0 auto;
+}
