@@ -8,6 +8,9 @@ import store from './store'
 import './utils/myaxios'
 import './api'
 
+// 引入mixin
+import './common/vuemixin'
+
 // 引入reset-css
 import 'reset-css'
 

@@ -54,12 +54,14 @@ export default {
     var first = data.filter(function(item){
       return item.parentid == 0
     });
+    this.$store.dispatch('getLevelOfPermissions',first);
     for(var value in first){
       var _id = first[value]._id;
       datafilter[first[value].permissionDesc] = data.filter(function(item){
         return item.parentid == _id
       });
     }
+    this.$store.dispatch('getTheSecondaryPermissions',datafilter);
     this.data = datafilter;
   }
 };
