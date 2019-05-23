@@ -61,7 +61,7 @@ export default {
     }
   },
   methods: {
-    editingRoleButton() {      
+    editingRoleButton() {    
       this.dialogFormVisible = true;
     },
     handleCheckChange(data, checked, indeterminate) {
@@ -81,7 +81,6 @@ export default {
     editingOk(form){
       this.$refs[form].validate(valid => {
         if (valid) {
-          console.log(this.data.id,this.dataArr);
           this.$http
             .post(this.$api.updateRoleInfo, {id:this.data._id,permissions:this.dataArr})
             .then(resp => {

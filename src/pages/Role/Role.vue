@@ -1,8 +1,9 @@
 <template>
   <div class="role">
+    <el-button type="primary" @click="dialogTableVisible = true">新增角色</el-button>
     <!-- 表格 -->
     <div class="box-table">
-      <el-button type="primary" @click="dialogTableVisible = true">新增角色</el-button>
+
       <!-- 新增角色 -->
       <el-dialog title="提示" :visible.sync="dialogTableVisible">
         <el-form :model="addNewRoleInfo" :rules="rules" ref="addNewRoleInfo" class="demo-ruleForm">
@@ -55,7 +56,7 @@
         <el-table-column label="操作" width="250">
           <template slot-scope="scope">
             <editing-role :role-data="scope.row"/>
-            <delete-role :role-id="scope.row._id" @myclick="findRoleAjax"/>
+            <delete-btn :del-id="scope.row._id" val="删除角色" :api="$api.deleteRole" @deleteclick="findAjax($api.findAllRoles)"/>
           </template>
         </el-table-column>
       </el-table>
@@ -64,12 +65,12 @@
 </template>
 
 <script>
-import DeleteRole from "../../components/RoleChild/DeleteRole/DeleteRole.vue";
+import DeleteBtn from '../../common/components/DeleteBtn/DeleteBtn.vue'
 import EditingRole from "../../components/RoleChild/EditingRole/EditingRole.vue";
 
 export default {
   components: {
-    DeleteRole,
+    DeleteBtn,
     EditingRole
   },
   data() {
@@ -135,7 +136,7 @@ export default {
             .post(this.$api.addNewRole, this.addNewRoleInfo)
             .then(resp => {
               if (resp.data.success) {
-                this.findRoleAjax();
+                this.findAjax(this.$api.findAllRoles);
                 this.$message({
                   message: resp.data.message,
                   type: "success"
@@ -158,7 +159,7 @@ export default {
     }
   },
   mounted() {
-    this.findRoleAjax();
+    this.findAjax(this.$api.findAllRoles);
     // this.allPerimission = JSON.parse(localStorage.getItem("getPermissionData"));
   }
 };

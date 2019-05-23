@@ -1,26 +1,30 @@
 <template>
-  <el-button type="danger" @click="deleteRoleButton">删除角色</el-button>
+  <el-button type="danger" @click="deleteUserButton">{{val}}</el-button>
 </template>
 
 <script>
 export default {
-  props: ["roleId"],
+  props: ["delId","val","api"],
   methods: {
-    deleteRoleButton() {
-      this.$confirm("确定删除该角色?", "提示", {
+    deleteUserButton() {
+      this.$confirm("确定"+this.val+"?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
         type: "warning"
       })
         .then(() => {
           this.$http
-            .post(this.$api.deleteRole, {_id:this.roleId})
+            .post(this.api, { _id: this.delId })
             .then(resp => {
-              this.$emit("myclick")
-              this.$message({
-                type: "success",
-                message: "删除成功!"
-              });
+              if (resp.data.success) {
+                this.$emit("deleteclick");
+                this.$message({
+                  type: "success",
+                  message: resp.data.message
+                });
+              }else{
+                console.log(resp.data.message);
+              }
             })
             .catch(error => {
               console.log(error);

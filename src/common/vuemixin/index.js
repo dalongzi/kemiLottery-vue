@@ -2,16 +2,25 @@ import Vue from 'vue'
 
 Vue.mixin({
   methods: {
-    findRoleAjax() {
+    findAjax(api) {
       this.$http
-        .get(this.$api.findAllRoles)
+        .get(api)
         .then(resp => {
-          this.tableData = resp.data.allRoles;
+          if(resp.data.allRoles){
+            this.tableData = resp.data.allRoles;
+          }else if(resp.data.allUsers){
+            this.tableData = resp.data.allUsers;
+          }else if(resp.data.allPermission){
+            this.tableData = resp.data.allPermission;
+          }
+          
         })
         .catch(error => {
           console.log(error);
         });
     },
+
+    // 权限树形复选框
     loadcommonNode(node, resolve) {
       if (node.level === 0) {
         var arr = [];
