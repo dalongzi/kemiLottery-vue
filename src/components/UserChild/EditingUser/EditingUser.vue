@@ -41,7 +41,7 @@
 
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible=false">取消</el-button>
-        <el-button @click="editingYesButton">确定</el-button>
+        <el-button @click="editingYesButton('addUserInfo')">确定</el-button>
       </div>
     </el-dialog>
   </div>
@@ -76,30 +76,36 @@ export default {
       this.findAjax(this.$api.findAllRoles);
       this.dialogFormVisible = true;
     },
-    editingYesButton() {
-      this.$http
-        .post(this.$api.updateUserInfo, this.addUserInfo)
-        .then(resp => {
-          if (resp.data.success) {
-            console.log(resp.data);
-            this.addUserInfo.password = '';
-            this.$emit('updateclick');
-            this.$message({
-              message: resp.data.message,
-              type: "success"
+    editingYesButton(dataForm) {
+      this.$refs[dataForm].validate(valid => {
+        if (valid) {
+          this.$http
+            .post(this.$api.updateUserInfo, this.addUserInfo)
+            .then(resp => {
+              if (resp.data.success) {
+                console.log(resp.data);
+                this.addUserInfo.password = "";
+                this.$emit("updateclick");
+                this.$message({
+                  message: resp.data.message,
+                  type: "success"
+                });
+              } else {
+                this.$message({
+                  message: resp.data.message,
+                  type: "warning"
+                });
+              }
+              this.dialogFormVisible = false;
+            })
+            .catch(error => {
+              console.log(error);
             });
-          } else {
-            this.$message({
-              message: resp.data.message,
-              type: "warning"
-            });
-          }
-          this.dialogFormVisible = false;
-        })
-        .catch(error => {
-          console.log(error);
-        });
-      
+        } else {
+          console.log("error submit!!");
+          return false;
+        }
+      });
     }
   }
 };

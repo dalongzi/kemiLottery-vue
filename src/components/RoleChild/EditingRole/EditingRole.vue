@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       data: this.roleData,
-      dataArr: [],
+      dataArr: this.roleData.permissions,
       dialogFormVisible: false,
       rules: {
         roleName: [
@@ -65,7 +65,6 @@ export default {
       this.dialogFormVisible = true;
     },
     handleCheckChange(data, checked, indeterminate) {
-      // this.data.permissions = [];
       this.dataArr = [];
       for (var index in this.$refs.tree.getCheckedNodes()) {
         this.dataArr.push(this.$refs.tree.getCheckedNodes()[index]._id);

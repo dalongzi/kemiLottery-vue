@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-button type="primary" @click="addUserButton">新增角色</el-button>
+    <el-button type="primary" @click="addUserButton">新增用户</el-button>
 
     <el-dialog title="新增用户" :visible.sync="dialogFormVisible">
       <el-form :model="addUserInfo" :rules="rules" ref="addUserInfo" class="demo-ruleForm">
