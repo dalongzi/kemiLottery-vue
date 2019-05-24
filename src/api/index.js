@@ -15,6 +15,7 @@ var api = {
   deletePermission: "/system/permission/deletePermission",  // 删除权限,暂不能用
   findAllGames: "/gameManage/games/findAllGames", // 获取所有彩种
   addNewGame: "/gameManage/games/addNewGame", // 更新彩票列表
+  findByGameName: "/gameManage/games/findByGameName", // 获取指点彩种的彩票信息
 }
 
 Vue.prototype.$api = api;
