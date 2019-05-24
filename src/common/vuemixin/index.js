@@ -2,6 +2,7 @@ import Vue from 'vue'
 
 Vue.mixin({
   methods: {
+    // 获取所有数据
     findAjax(api) {
       this.$http
         .get(api)

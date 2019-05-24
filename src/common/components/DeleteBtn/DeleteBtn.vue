@@ -7,7 +7,6 @@ export default {
   props: ["delId","val","api"],
   methods: {
     deleteUserButton() {
-      console.log(this.delId);
       this.$confirm("确定"+this.val+"?", "提示", {
         confirmButtonText: "确定",
         cancelButtonText: "取消",
