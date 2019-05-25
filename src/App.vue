@@ -6,11 +6,11 @@
 </template>
 
 <script>
-import HomeCommon from './components/HomeCommon/HomeCommon.vue'
+// import HomeCommon from './components/HomeCommon/HomeCommon.vue'
 
 export default {
   components: {
-    HomeCommon
+    HomeCommon: ()=>import('./components/HomeCommon/HomeCommon.vue')
   }
 };
 </script>

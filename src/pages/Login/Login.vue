@@ -7,11 +7,11 @@
 </template>
 
 <script>
-import LoginForm from '@/components/LoginForm/LoginForm.vue'
+// import LoginForm from '@/components/LoginForm/LoginForm.vue'
 
 export default {
   components: {
-    LoginForm
+    LoginForm: ()=>import('@/components/LoginForm/LoginForm.vue')
   }
 };
 </script>

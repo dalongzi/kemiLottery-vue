@@ -16,13 +16,13 @@
 </template>
 
 <script>
-import AddNewGame from "../../components/LotterListChild/AddNewGame/AddNewGame.vue";
-import GameList from '../../components/LotterListChild/GameList/GameList.vue'
+// import AddNewGame from "../../components/LotterListChild/AddNewGame/AddNewGame.vue";
+// import GameList from '../../components/LotterListChild/GameList/GameList.vue'
 
 export default {
   components: {
-    AddNewGame,
-    GameList
+    AddNewGame: ()=>import('../../components/LotterListChild/AddNewGame/AddNewGame.vue'),
+    GameList: ()=>import('../../components/LotterListChild/GameList/GameList.vue')
   },
   data() {
     return {

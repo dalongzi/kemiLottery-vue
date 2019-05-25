@@ -3,6 +3,7 @@ import Vue from 'vue'
 
 // 配置基础路径
 axios.defaults.baseURL = process.env.VUE_APP_BaseURL;
+console.log(process.env);
 
 // 请求拦截器
 axios.interceptors.request.use(function (config) {

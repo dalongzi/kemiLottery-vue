@@ -20,15 +20,15 @@
 </template>
 
 <script>
-import AddNewUser from "../../components/UserChild/AddNewUser/AddNewUser.vue"
-import DeleteBtn from '../../common/components/DeleteBtn/DeleteBtn.vue'
-import EditingUser from '../../components/UserChild/EditingUser/EditingUser.vue'
+// import AddNewUser from "../../components/UserChild/AddNewUser/AddNewUser.vue"
+// import DeleteBtn from '../../common/components/DeleteBtn/DeleteBtn.vue'
+// import EditingUser from '../../components/UserChild/EditingUser/EditingUser.vue'
 
 export default {
   components: {
-    AddNewUser,
-    DeleteBtn,
-    EditingUser
+    AddNewUser: ()=>import("../../components/UserChild/AddNewUser/AddNewUser.vue"),
+    DeleteBtn: ()=>import('../../common/components/DeleteBtn/DeleteBtn.vue'),
+    EditingUser: ()=>import('../../components/UserChild/EditingUser/EditingUser.vue')
   },
   data() {
     return {

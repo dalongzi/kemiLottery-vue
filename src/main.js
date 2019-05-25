@@ -16,24 +16,25 @@ import 'reset-css'
 
 // 引入element-ui
 import ElementUI from 'element-ui';
-import 'element-ui/lib/theme-chalk/index.css';
+import 'element-ui/lib/theme-chalk/index.css'
+
+Vue.use(ElementUI);
 
 // 全局守卫
-router.beforeEach((to,from,next)=>{
-  if(to.path==='/login'){
+router.beforeEach((to, from, next) => {
+  if (to.path === '/login') {
     next();
-  }else{
+  } else {
     var token = localStorage.getItem('token');
-    if(token){
+    if (token) {
       next();
-    }else{
-      next({path:'/login',query:{redirect:to.path}});
+    } else {
+      next({ path: '/login', query: { redirect: to.path } });
     }
   }
   next();
 });
 
-Vue.use(ElementUI);
 
 new Vue({
   router,

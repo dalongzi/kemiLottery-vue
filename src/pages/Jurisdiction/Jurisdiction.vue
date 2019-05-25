@@ -40,13 +40,13 @@
 </template>
 
 <script>
-import AddNewPermission from "../../components/PermissionChild/AddNewPermission/AddNewPermission.vue";
-import DeleteBtn from "../../common/components/DeleteBtn/DeleteBtn.vue";
+// import AddNewPermission from "../../components/PermissionChild/AddNewPermission/AddNewPermission.vue";
+// import DeleteBtn from "../../common/components/DeleteBtn/DeleteBtn.vue";
 
 export default {
   components: {
-    AddNewPermission,
-    DeleteBtn
+    AddNewPermission: ()=>import('../../components/PermissionChild/AddNewPermission/AddNewPermission.vue'),
+    DeleteBtn: ()=>import('../../common/components/DeleteBtn/DeleteBtn.vue')
   },
   data() {
     return {

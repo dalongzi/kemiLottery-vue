@@ -65,13 +65,13 @@
 </template>
 
 <script>
-import DeleteBtn from '../../common/components/DeleteBtn/DeleteBtn.vue'
-import EditingRole from "../../components/RoleChild/EditingRole/EditingRole.vue";
+// import DeleteBtn from '../../common/components/DeleteBtn/DeleteBtn.vue'
+// import EditingRole from "../../components/RoleChild/EditingRole/EditingRole.vue";
 
 export default {
   components: {
-    DeleteBtn,
-    EditingRole
+    DeleteBtn: ()=>import('../../common/components/DeleteBtn/DeleteBtn.vue'),
+    EditingRole: ()=>import('../../components/RoleChild/EditingRole/EditingRole.vue')
   },
   data() {
     return {
